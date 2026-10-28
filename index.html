@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>REPTYRY — gym streetwear · вишитий дизайн</title>
+  <meta name="description" content="REPTYRY — оверсайз футболки, світшоти та худі. For gym and street. Made in Ukraine.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#catalog">Перейти до каталогу</a>
+
+  <!-- Прелоадер: штанга набирає вагу -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__bar">
+      <span class="plate p1"></span><span class="plate p2"></span><span class="plate p3"></span>
+      <span class="loader__rod"></span>
+      <span class="plate p3"></span><span class="plate p2"></span><span class="plate p1"></span>
+    </div>
+    <div class="loader__kg"><span id="loaderKg">0</span> KG</div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="flash" aria-hidden="true"></div>
+  <div class="glow" id="glow" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span>view</span></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="header" id="header">
+    <a class="byline" href="#top">by lunacy</a>
+    <a class="header__logo" href="#top" aria-label="REPTYRY — на початок">
+      <img src="assets/img/logo.png" alt="REPTYRY" width="560" height="290">
+    </a>
+    <div class="header__right">
+      <nav class="nav" id="nav" aria-label="Головне меню">
+        <a href="#catalog">Каталог</a>
+        <a href="#sizes">Розміри</a>
+        <a href="#delivery">Доставка</a>
+        <a href="#contacts">Контакти</a>
+        <a class="nav__tg" href="#" data-link="channel">Telegram</a>
+      </nav>
+      <button class="cartbtn" id="cartBtn" aria-label="Кошик, товарів: 0">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20.5" r="1.4" fill="currentColor"/><circle cx="17.5" cy="20.5" r="1.4" fill="currentColor"/></svg>
+        <span class="cartbtn__label">Кошик</span>
+        <span class="cartbtn__count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__ghost" aria-hidden="true">
+        <span data-speed="-0.25">REPTYRY</span>
+        <span data-speed="0.18">HEAVY DUTY</span>
+      </div>
+      <div class="hero__sparks" aria-hidden="true"></div>
+      <div class="hero__ring" aria-hidden="true"></div>
+
+      <div class="hero__center">
+        <h1 class="hero__logo reveal" id="heroLogo">
+          <img src="assets/img/logo.png" alt="REPTYRY" width="560" height="290">
+        </h1>
+        <p class="hero__tag reveal" id="heroTag"></p>
+        <div class="hero__cta reveal">
+          <a class="btn btn--red magnet" href="#catalog">Дивитись каталог</a>
+          <a class="btn btn--ghost magnet" href="#" data-link="channel">Telegram-канал</a>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#catalog" aria-label="Гортати до каталогу">
+        <span>scroll</span><i></i>
+      </a>
+    </section>
+
+    <!-- MARQUEE (фрази — з data.js / адмінки) -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee"></div>
+    </div>
+
+    <!-- SHOWCASE: sticky-сцена з топ-товарами -->
+    <section class="showcase" id="showcase" aria-label="Топ-моделі">
+      <div class="showcase__stage">
+        <p class="showcase__kicker">The drop</p>
+        <div class="showcase__slides" id="scSlides"></div>
+        <div class="showcase__ui" aria-hidden="true">
+          <div class="showcase__dots" id="scDots"></div>
+          <div class="showcase__bar"><i id="scBar"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOG -->
+    <section class="section catalog" id="catalog" tabindex="-1">
+      <div class="section__head">
+        <h2 class="title reveal" data-split>Collection</h2>
+        <p class="subtitle reveal">Футболки · Світшоти · Худі</p>
+      </div>
+
+      <div class="filters reveal" role="group" aria-label="Фільтр каталогу" id="filters">
+        <button class="chip is-active" data-filter="all" aria-pressed="true">Усі <sup id="countAll"></sup></button>
+      </div>
+
+      <div id="groups"></div>
+    </section>
+
+    <!-- STRIP: дві стрічки фото -->
+    <div class="strip" id="strip" aria-hidden="true">
+      <div class="strip__row" id="stripA"></div>
+      <div class="strip__row strip__row--b" id="stripB"></div>
+    </div>
+
+    <!-- SIZES -->
+    <section class="section sizes" id="sizes">
+      <div class="section__head">
+        <h2 class="title reveal" data-split>Size Chart</h2>
+        <p class="subtitle reveal">Розмірні сітки — заміри по виробу, у сантиметрах</p>
+      </div>
+      <div class="sizes__tabs reveal" role="group" aria-label="Тип виробу" id="sizeTabs"></div>
+      <div class="sizes__panel reveal" id="sizePanel"></div>
+    </section>
+
+    <!-- DELIVERY -->
+    <section class="section delivery" id="delivery">
+      <div class="section__head">
+        <h2 class="title reveal" data-split>Delivery</h2>
+        <p class="subtitle reveal">Доставка по Україні</p>
+      </div>
+      <div class="delivery__grid" id="deliveryGrid"></div>
+      <div class="payment reveal" id="payment"></div>
+      <p class="delivery__note reveal">Вартість доставки не входить у ціну товару і розраховується за тарифами перевізника. Точну суму та терміни підтвердить менеджер.</p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contacts">
+    <div class="footer__ghost" aria-hidden="true" data-speed="-0.15">STAY HEAVY</div>
+    <div class="footer__inner">
+      <img class="footer__logo reveal" src="assets/img/logo.png" alt="REPTYRY" width="560" height="290" loading="lazy">
+      <p class="footer__tag reveal" id="footerTag"></p>
+      <div class="footer__links reveal">
+        <a class="biglink biglink--tg" href="#" data-link="channel">
+          <span class="biglink__label">Telegram</span>
+          <span class="biglink__sub">Канал @RPTRgym</span>
+          <span class="biglink__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="biglink biglink--mgr" href="#" data-link="manager">
+          <span class="biglink__label">Менеджер</span>
+          <span class="biglink__sub" id="mgrSub">Замовлення та питання</span>
+          <span class="biglink__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="biglink biglink--ig" href="#" data-link="instagram">
+          <span class="biglink__label">Instagram</span>
+          <span class="biglink__sub" id="igSub">@reptyry</span>
+          <span class="biglink__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="footer__cols">
+        <nav class="footer__nav" aria-label="Нижнє меню">
+          <a href="#catalog">Каталог</a><a href="#sizes">Розміри</a><a href="#delivery">Доставка</a><a href="#top">Нагору ↑</a>
+        </nav>
+        <nav class="footer__legal" aria-label="Документи">
+          <a href="#privacy">Політика конфіденційності</a>
+          <a href="#terms">Умови використання</a>
+          <a href="#cookies">Політика cookie</a>
+          <a href="#third-party">Сторонні сервіси</a>
+          <a href="#data-deletion">Видалення даних</a>
+        </nav>
+      </div>
+
+      <dl class="requisites" id="requisites"></dl>
+
+      <div class="footer__bottom">
+        <span>© <span id="year">2026</span> REPTYRY · Made in Ukraine</span>
+        <span>site by lunacy</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Модалка товару -->
+  <dialog class="modal" id="productModal" aria-labelledby="pmName">
+    <button class="modal__close" data-close aria-label="Закрити">✕</button>
+    <div class="pm">
+      <div class="pm__gallery">
+        <div class="pm__main">
+          <img id="pmImg" src="" alt="">
+          <button class="pm__nav pm__prev" id="pmPrev" aria-label="Попереднє фото">‹</button>
+          <button class="pm__nav pm__next" id="pmNext" aria-label="Наступне фото">›</button>
+          <span class="pm__counter" id="pmCounter" aria-live="polite"></span>
+        </div>
+        <div class="pm__thumbs" id="pmThumbs"></div>
+      </div>
+      <div class="pm__info">
+        <p class="pm__type" id="pmType"></p>
+        <h3 class="pm__name" id="pmName"></h3>
+        <p class="pm__price" id="pmPrice"></p>
+        <p class="pm__desc" id="pmDesc"></p>
+
+        <fieldset class="opt">
+          <legend class="pm__label">Колір: <b id="pmColorName"></b></legend>
+          <div class="swatches swatches--lg" id="pmColors"></div>
+        </fieldset>
+        <fieldset class="opt">
+          <legend class="pm__label">Розмір <a class="sizelink" id="pmSizeLink" href="#">📏 Розмірна сітка</a></legend>
+          <div class="sizes-pick" id="pmSizes"></div>
+          <p class="err" id="pmErr" role="alert"></p>
+        </fieldset>
+
+        <div class="pm__buy">
+          <div class="qty" aria-label="Кількість">
+            <button type="button" id="pmMinus" aria-label="Менше">−</button>
+            <output id="pmQty" aria-live="polite">1</output>
+            <button type="button" id="pmPlus" aria-label="Більше">+</button>
+          </div>
+          <button class="btn btn--red" id="pmAdd" type="button">Додати в кошик</button>
+        </div>
+
+        <details class="pm__made" open>
+          <summary>З чого зроблено</summary>
+          <dl>
+            <div><dt>Нанесення</dt><dd id="pmTech"></dd></div>
+            <div><dt>Матеріал</dt><dd id="pmMaterial"></dd></div>
+            <div><dt>Крій</dt><dd>Oversized</dd></div>
+          </dl>
+        </details>
+        <a class="pm__ask" href="#" data-link="manager">Є питання щодо товару? Напишіть менеджеру →</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Модалка розмірної сітки -->
+  <dialog class="modal modal--size" id="sizeModal" aria-labelledby="smTitle">
+    <button class="modal__close" data-close aria-label="Закрити">✕</button>
+    <div class="sm" id="smBody"></div>
+  </dialog>
+
+  <!-- Кошик -->
+  <dialog class="drawer" id="cartModal" aria-labelledby="cartTitle">
+    <div class="drawer__head">
+      <h3 id="cartTitle">Кошик</h3>
+      <button class="modal__close" data-close aria-label="Закрити кошик">✕</button>
+    </div>
+    <div class="drawer__body" id="cartBody"></div>
+  </dialog>
+
+  <!-- Документи -->
+  <dialog class="modal modal--legal" id="legalModal" aria-labelledby="legalTitle">
+    <button class="modal__close" data-close aria-label="Закрити">✕</button>
+    <div class="legal">
+      <nav class="legal__tabs" id="legalTabs" aria-label="Документи"></nav>
+      <article class="legal__doc" id="legalDoc"></article>
+    </div>
+  </dialog>
+
+  <!-- Cookie-банер -->
+  <div class="cookie" id="cookie" role="region" aria-label="Повідомлення про cookies" hidden>
+    <p><b>Cookies.</b> Ми не використовуємо рекламні чи аналітичні cookies і трекери. Сайт зберігає у вашому браузері лише вміст кошика та цей вибір (localStorage) — це потрібно, щоб кошик працював.</p>
+    <div class="cookie__btns">
+      <button class="btn btn--sm" id="cookieOk" type="button">Зрозуміло</button>
+      <a class="btn btn--sm btn--ghost" href="#cookies">Детальніше</a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="legal.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

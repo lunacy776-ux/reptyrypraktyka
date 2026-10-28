@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>REPTYRY — адмінка</title>
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top__brand"><img src="assets/img/logo.png" alt="REPTYRY"><span>адмінка</span></div>
+    <div class="top__status" id="status" role="status" aria-live="polite"></div>
+    <div class="top__actions">
+      <button class="b" id="btnFolder" type="button" title="Chrome / Edge: зберігати data.js і фото прямо в папку сайту">📁 Підключити папку сайту</button>
+      <a class="b" id="btnPreview" href="index.html?draft" target="_blank" rel="noopener">👁 Переглянути сайт</a>
+      <button class="b b--red" id="btnSave" type="button">💾 Зберегти data.js</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="tabs" id="tabs" aria-label="Розділи">
+      <button data-tab="products" class="is-on">Товари</button>
+      <button data-tab="prices">Ціни і знижки</button>
+      <button data-tab="groups">Групи</button>
+      <button data-tab="sizes">Розмірні сітки</button>
+      <button data-tab="delivery">Доставка і оплата</button>
+      <button data-tab="texts">Контакти і тексти</button>
+      <button data-tab="company">Реквізити</button>
+      <button data-tab="online">Сайт в інтернеті</button>
+      <button data-tab="help">Як це працює</button>
+    </nav>
+    <main class="main" id="main"></main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- поточні дані сайту -->
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
